@@ -1,29 +1,29 @@
 import React from 'react'
-import logo  from "../assets/images/nebula-times-logo.png";
+import logo  from "../assets/images/nebula-times-logo.png"
+import { FaAngleRight } from "react-icons/fa";
+
 
 function Header() {
   return (
     <div>
       <header className="bg-gray-100 p-4 flex justify-between items-center">
         <div>
-          <img src={logo} alt="Nebula Times Logo" className="w-60"/>
+          <img src={logo} alt="Nebula Times Logo" className="w-[180px]"/>
         </div>
         <nav>
-          <ul className="flex space-x-4">
+          <ul className="flex gap-4 md:gap-14">
             <li>
-              <a href="#" className="text-gray-900 font-semibold">Home</a>
+              <a href="#" className="text-gray-800 hover:text-gray-600 hover:font-bold cursor-pointer">Home</a>
             </li>
             <li>
-              <a href="#" className="text-gray-900 font-semibold">About</a>
+              <a href="#" className="text-gray-800 hover:text-gray-600 hover:font-bold cursor-pointer">About</a>
             </li>
             <li>
-              <a href="#" className="text-gray-900 font-semibold">Contact</a>
+              <a href="#" className="text-gray-800 hover:text-gray-600 hover:font-bold cursor-pointer">Contact</a>
             </li>
           </ul>
         </nav>
-        <button className="bg-black-800 hover:bg-black-400 text-white font-bold py-2 px-4 rounded">
-          Subscribe
-        </button>
+        <button className="text-gray-100 bg-purple-800 px-4 py-2 rounded-full hover:bg-purple-700 flex items-center">Subscribe<FaAngleRight className='ml-3'/></button>
       </header> 
     </div>
   )
