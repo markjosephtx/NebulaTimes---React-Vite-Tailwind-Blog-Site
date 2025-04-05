@@ -6,7 +6,7 @@ import { FaAngleRight } from "react-icons/fa";
 function Header() {
   return (
     <div>
-      <header className="bg-gray-100 p-4 flex justify-between items-center">
+      <header className="bg-gray-100 p-8 flex justify-between items-center">
         <div>
           <img src={logo} alt="Nebula Times Logo" className="w-[180px]"/>
         </div>
@@ -23,7 +23,7 @@ function Header() {
             </li>
           </ul>
         </nav>
-        <button className="text-gray-100 bg-purple-800 px-4 py-2 rounded-full hover:bg-purple-700 flex items-center">Subscribe<FaAngleRight className='ml-3'/></button>
+        <button className="text-gray-100 bg-purple-600 px-4 py-2 rounded-full hover:bg-purple-800 flex items-center font-semibold">Subscribe<FaAngleRight className='ml-2 text-[20px]'/></button>
       </header> 
     </div>
   )
