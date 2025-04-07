@@ -4,43 +4,27 @@ import GlobalApi from '../Services/GlobalApi'
 import Markdown from 'react-markdown'
 
 function BlogDetail() {
-    const { id } = useParams()
-    const [post, setPost] = useState(null) // Changed to null for better initial state handling
-    const [loading, setLoading] = useState(true) // Added loading state
-    const [error, setError] = useState(null) // Added error state
+    const {id}=useParams();
+    const [post,setPost]=useState([])
+    useEffect(()=>{
+        console.log("Id",id)
+        getBlogById();
+    },[])
 
-    useEffect(() => {
-        if (id) {
-            getBlogById()
-        }
-    }, [id])
-
-    const getBlogById = async () => {
-        try {
-            const resp = await GlobalApi.getPostById(id)
-            const item = resp.data.data
-            const result = {
-                id: item.id,
-                title: item.attributes.title,
-                desc: item.attributes.description,
-                tag: item.attributes.tag,
-                coverImage: item.attributes.coverImage.data.attributes.url,
-            }
-            setPost(result)
-        } catch (err) {
-            console.error("Error fetching blog post:", err)
-            setError("Failed to load blog post.")
-        } finally {
-            setLoading(false)
-        }
-    }
-
-    if (loading) {
-        return <div className="text-center mt-10">Loading...</div>
-    }
-
-    if (error) {
-        return <div className="text-center mt-10 text-red-500">{error}</div>
+    const getBlogById=()=>{
+        GlobalApi.getPostById(id).then(resp=>{
+           
+            const item=resp.data.data;
+            const result={
+                id:item.id,
+                title:item.attributes.title,
+                desc:item.attributes.description,
+                tag:item.attributes.tag,
+                coverImage:item.attributes.coverImage.data.attributes.url,
+            };
+            setPost(result);
+            console.log("Result",result);
+        })
     }
 
     return (

@@ -5,39 +5,35 @@ import Blogs from '../Components/Blogs'
 import GlobalApi from '../Services/GlobalApi'
 
 function Home() {
-  const [post, setPost] = useState([])
-  const [orgPost, setOrgPost] = useState([])
+  const [post,setPost]=useState([])
+    const [orgPost,setOrgPost]=useState([])
 
-  useEffect(() => {
-    getPost()
-  }, [])
+    useEffect(()=>{
+        getPost();
+    },[])
+    const getPost=()=>{
+        GlobalApi.getPost.then(resp=>{
+            const result=resp.data.data.map(item=>({
+                id:item.id,
+                title:item.attributes.title,
+                desc:item.attributes.description,
+                tag:item.attributes.tag,
+                coverImage:item.attributes.coverImage.data.attributes.url,
+            }));
+            setPost(result);
+            setOrgPost(result);
+        })
+    }
 
-  const getPost = async () => {
-    try {
-      const resp = await GlobalApi.getPost(); // Now correctly calls the function
-      console.log('API Response:', resp);
-      const result = resp.data.data.map(item => ({
-        id: item.id,
-        title: item.attributes.title,
-        desc: item.attributes.description,
-        tag: item.attributes.tag,
-        coverImage: item.attributes.coverImage.data.attributes.url,
-      }));
+    const filterPost=(tag)=>{
+      if(tag=='All')
+      {
+        setPost(orgPost);
+        return ;
+      }
+      const result=orgPost.filter(item=>item.tag==tag);
       setPost(result);
-      setOrgPost(result);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
     }
-  }
-
-  const filterPost = (tag) => {
-    if (tag === 'All') {
-      setPost(orgPost)
-      return
-    }
-    const result = orgPost.filter(item => item.tag === tag)
-    setPost(result)
-  }
 
   return (
     <div>
