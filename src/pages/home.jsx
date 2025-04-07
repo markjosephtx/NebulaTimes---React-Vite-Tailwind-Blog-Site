@@ -5,45 +5,47 @@ import Blogs from '../Components/Blogs'
 import GlobalApi from '../Services/GlobalApi'
 
 function Home() {
-  const [post,setPost]=useState([])
-  const [orgPost,setOrgPost]=useState([])
+  const [post, setPost] = useState([])
+  const [orgPost, setOrgPost] = useState([])
 
-  useEffect(()=>{
-      getPost();
-  },[])
-  const getPost=()=>{
-      GlobalApi.getPost.then(resp=>{
-          const result=resp.data.data.map(item=>({
-              id:item.id,
-              title:item.attributes.title,
-              desc:item.attributes.description,
-              tag:item.attributes.tag,
-              coverImage:item.attributes.coverImage.data.attributes.url,
-          }));
-          setPost(result);
-          setOrgPost(result);
-      })
+  useEffect(() => {
+    getPost()
+  }, [])
+
+  const getPost = async () => {
+    try {
+      const resp = await GlobalApi.getPost() // Fixed: Added parentheses to call the function
+      const result = resp.data.data.map(item => ({
+        id: item.id,
+        title: item.attributes.title,
+        desc: item.attributes.description,
+        tag: item.attributes.tag,
+        coverImage: item.attributes.coverImage.data.attributes.url,
+      }))
+      setPost(result)
+      setOrgPost(result)
+    } catch (error) {
+      console.error("Error fetching posts:", error) // Added error handling
+    }
   }
 
-  const filterPost=(tag)=>{
-    if(tag=='All')
-    {
-      setPost(orgPost);
-      return ;
+  const filterPost = (tag) => {
+    if (tag === 'All') {
+      setPost(orgPost)
+      return
     }
-    const result=orgPost.filter(item=>item.tag==tag);
-    setPost(result);
+    const result = orgPost.filter(item => item.tag === tag)
+    setPost(result)
   }
 
   return (
-    <div >
+    <div>
       {/* Search */}
-      <Search selectedTag={(tag)=>filterPost(tag)} />
+      <Search selectedTag={(tag) => filterPost(tag)} />
       {/* IntroPost */}
-      {post.length>0? <IntroPost post={post[0]} />:null}
+      {post.length > 0 ? <IntroPost post={post[0]} /> : null}
       {/* Blogs */}
-      {post.length>0?  <Blogs posts={post}/>:null}
-      
+      {post.length > 0 ? <Blogs posts={post} /> : null}
     </div>
   )
 }

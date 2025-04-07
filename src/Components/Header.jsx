@@ -1,7 +1,7 @@
 import React from 'react'
 import logo  from "../assets/images/nebula-times-logo.png"
 import { FaAngleRight } from "react-icons/fa";
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 
 function Header() {
