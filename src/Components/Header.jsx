@@ -1,9 +1,11 @@
 import React from 'react'
 import logo  from "../assets/images/nebula-times-logo.png"
 import { FaAngleRight } from "react-icons/fa";
+import { useNavigate } from 'react-router';
 
 
 function Header() {
+  const navigate=useNavigate();
   return (
     <div>
       <header className="bg-gray-100 p-8 flex justify-between items-center">
