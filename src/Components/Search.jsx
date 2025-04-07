@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import banner from "../assets/images/space-banner-search.jpg"
 import { CgSearch } from "react-icons/cg";
+import GlobalApi from '../Services/GlobalApi';
 
 
-function Search() {
+function Search({selectedTag}) {
   const tags=[
     {id:1, name: 'All'},
     {id:2, name: 'Space'},
