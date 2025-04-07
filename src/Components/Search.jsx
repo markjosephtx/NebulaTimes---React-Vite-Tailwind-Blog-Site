@@ -23,7 +23,7 @@ function Search() {
       </div>
       <div className='flex gap-10 justify-center items-center mt-8 p-4'>
         {tags.map((item,index)=>(
-          <ul onClick={()=>setActiveIndex(item.id)} className={`flex gap-4 mt-4 cursor-pointer p-2 rounded-sm md:rounded-full text-sm md:px-4 hover:scale-110 hover:border-[2px] border-purple-500 transition-all duration-100 ease-in-out ${activeIndex === item.id ? 'bg-purple-600 font-semibold text-white' : 'text-gray-500'}`} key={item.id}>
+          <ul key={item.id} onClick={()=>setActiveIndex(item.id)} className={`flex gap-4 mt-4 cursor-pointer p-2 rounded-sm md:rounded-full text-sm md:px-4 hover:scale-110 hover:border-[2px] border-purple-500 transition-all duration-100 ease-in-out ${activeIndex === item.id ? 'bg-purple-600 font-semibold text-white' : 'text-gray-500'}`}>
             <il>{item.name}</il>
           </ul>
         ))}

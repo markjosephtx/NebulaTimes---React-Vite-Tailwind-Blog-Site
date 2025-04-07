@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-function IntroPost() {
+function IntroPost({post}) {
+
+  
   return (
-    <div>IntroPost</div>
+    <div>
+      {post.title}
+      </div>
   )
 }
 
