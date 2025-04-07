@@ -14,18 +14,19 @@ function Home() {
 
   const getPost = async () => {
     try {
-      const resp = await GlobalApi.getPost() // Fixed: Added parentheses to call the function
+      const resp = await GlobalApi.getPost(); // Now correctly calls the function
+      console.log('API Response:', resp);
       const result = resp.data.data.map(item => ({
         id: item.id,
         title: item.attributes.title,
         desc: item.attributes.description,
         tag: item.attributes.tag,
         coverImage: item.attributes.coverImage.data.attributes.url,
-      }))
-      setPost(result)
-      setOrgPost(result)
+      }));
+      setPost(result);
+      setOrgPost(result);
     } catch (error) {
-      console.error("Error fetching posts:", error) // Added error handling
+      console.error('Error fetching posts:', error);
     }
   }
 
