@@ -8,7 +8,7 @@ function Blogs({posts}) {
     mt-10 px-10 md:px-15 lg:px-32'>
       {posts.map((item)=>(
         <div key={item.id} className='m-4 cursor-pointer' onClick={()=>navigate('blog-detail/'+item.id)} >
-           <img src={item.coverImage} className='w-full rounded-2xl
+           <img src={item.cover} className='w-full rounded-2xl
            object-cover h-[200px]'/>
            <h3 className='text-red-500 mt-3'>{item.tag}</h3>
            <h3 className='font-bold mt-3'>{item.title}</h3>

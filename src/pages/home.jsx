@@ -15,10 +15,10 @@ function Home() {
         GlobalApi.getPost.then(resp=>{
             const result=resp.data.data.map(item=>({
                 id:item.id,
-                title:item.attributes.title,
-                desc:item.attributes.description,
-                tag:item.attributes.tag,
-                coverImage:item.attributes.coverImage.data.attributes.url,
+                title: item.title,
+                description: item.description,
+                cover: item.cover.formats.url,
+                tag: item.tag,
             }));
             setPost(result);
             setOrgPost(result);

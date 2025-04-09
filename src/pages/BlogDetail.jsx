@@ -17,10 +17,10 @@ function BlogDetail() {
             const item=resp.data.data;
             const result={
                 id:item.id,
-                title:item.attributes.title,
-                desc:item.attributes.description,
-                tag:item.attributes.tag,
-                coverImage:item.attributes.coverImage.data.attributes.url,
+                title:item.title,
+                desc:item.description,
+                tag:item.tag,
+                cover: item.cover?.formats?.large?.url, // Use large or medium format if available
             };
             setPost(result);
             console.log("Result",result);
@@ -42,7 +42,7 @@ function BlogDetail() {
                     <h3 className='text-gray-500 text-[10px]'>7 April 2024</h3>
                 </div>
             </div>
-            <img src={post?.coverImage} alt="Cover" className='rounded-2xl mt-5 mb-5 w-full' />
+            <img src={post?.cover} alt="Cover" className='rounded-2xl mt-5 mb-5 w-full' />
             <Markdown children={post?.desc || ""} escapeHtml={false} className='leading-9' />
         </div>
     )
